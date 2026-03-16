@@ -1,17 +1,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  ADRC-based search algorithm (ASA) source codes version 0.1(beta)
+%  ADRC-based optimization framework (ADRC-OF) source codes version 0.1(beta)
 %
 %  Developed in:	MATLAB 9.13 (R2022b)
 %
 %  Programmer:		Jing Xiang
 %
 %  Original paper:	Jing Xiang,
-%                   ADRC-based search algorithm: A novel metaheuristic
+%                   
 %                   algorithm based on active disturbance rejection control
 %                   algorithm
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [TargetX, TargetF, ConvergenceCurve] = ASA(fun, nvars, lb, ub, N, T, varargin)
+function [TargetX, TargetF, ConvergenceCurve] = ADRCOF(fun, nvars, lb, ub, N, T, varargin)
 p = inputParser;
 addParameter(p, 'Verbose', false);
 addParameter(p, 'Verfig',     false);
