@@ -1,0 +1,30 @@
+# MATLAB temporary files
+*.m~
+*.mat
+*.asv
+*.fig
+*.slx
+*.slxc
+*.mlx
+*.mlapp
+*.mex*
+*.p
+*.slprj
+*.sltx
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.out
+*.log
+*.spl
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.toc
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
