@@ -158,19 +158,6 @@ demo
 | `TargetF` | scalar | Fitness value of the best solution. |
 | `ConvergenceCurve` | vector (1×T) | Best fitness at each iteration. |
 
-### Parameter Tuning Guide
-
-Based on sensitivity analysis on CEC2017, the recommended parameter configuration is:
-
-| Parameter | Recommended | Search Range |
-|-----------|-------------|--------------|
-| `SEF_kp` | 0.39 | [0.01, 0.5] |
-| `ESO_Wo` | 0.08 | [0.01, 0.1] |
-| `gain` | 0.02 | [0.005, 0.05] |
-| `Err_td` | 0.06 | [0.01, 0.1] |
-
-![Parameter Sensitivity](figures/heat_kw.png)
-
 ---
 
 ## Benchmark Results
@@ -185,63 +172,6 @@ ADRC-OF achieves competitive runtime efficiency on both CEC2017 and CEC2022 benc
 </p>
 
 *Mean runtime (D=10, N=50, T=1000) with error bars representing standard deviation across test functions.*
-
-### Convergence Behavior (CEC2017)
-
-<p align="center">
-  <img src="figures/CEC2017_F1_convergence.png" width="48%"/>
-  <img src="figures/CEC2017_F7_convergence.png" width="48%"/>
-  <img src="figures/CEC2017_F20_convergence.png" width="48%"/>
-  <img src="figures/CEC2017_F29_convergence.png" width="48%"/>
-</p>
-
-### Convergence Behavior (CEC2022)
-
-<p align="center">
-  <img src="figures/CEC2022_F1_convergence.png" width="48%"/>
-  <img src="figures/CEC2022_F5_convergence.png" width="48%"/>
-  <img src="figures/CEC2022_F8_convergence.png" width="48%"/>
-  <img src="figures/CEC2022_F12_convergence.png" width="48%"/>
-</p>
-
-### Box Plot Analysis (CEC2022)
-
-<p align="center">
-  <img src="figures/BOX-CEC2022_F1.png" width="32%"/>
-  <img src="figures/BOX-CEC2022_F5.png" width="32%"/>
-  <img src="figures/BOX-CEC2022_F12.png" width="32%"/>
-</p>
-
----
-
-## Engineering Applications
-
-ADRC-OF has been successfully applied to **7 constrained engineering optimization problems**:
-
-| Problem | Type | Constraints |
-|---------|------|-------------|
-| Ship Maneuvering (MMG) Model Identification | Real-world parameter estimation | Nonlinear ODE coupling, measurement noise |
-| Process Synthesis (PS) | Chemical engineering | Mass/energy balance |
-| Reactor Network Design (RND) | Chemical engineering | Reaction kinetics |
-| Haverly's Pooling (HP) | Operations research | Bilinear constraints |
-| Car Side Impact Design (CSID) | Mechanical design | Safety regulations |
-| Sawmill Operation (SO) | Industrial scheduling | Resource availability |
-| SOPWM for 7-Level Inverters | Power electronics | Harmonic elimination |
-
-<p align="center">
-  <img src="figures/CSID.png" width="30%"/>
-  <img src="figures/SOPWM.png" width="30%"/>
-  <img src="figures/SO.png" width="30%"/>
-</p>
-
-### Ship Maneuvering Parameter Identification
-
-A real-world application to identify the hydrodynamic parameters of a ship maneuvering model (MMG model) using free-running trial data from the Dolphin 1 vessel:
-
-<p align="center">
-  <img src="figures/Haitun.jpg" width="45%"/>
-  <img src="figures/Haitun2.png" width="45%"/>
-</p>
 
 ---
 

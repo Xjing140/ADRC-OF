@@ -158,19 +158,6 @@ demo
 | `TargetF` | 标量 | 最优解的适应度值。 |
 | `ConvergenceCurve` | 向量 (1×T) | 每次迭代的最优适应度值。 |
 
-### 参数调优指南
-
-基于 CEC2017 的参数敏感度分析，推荐配置为：
-
-| 参数 | 推荐值 | 搜索范围 |
-|------|--------|----------|
-| `SEF_kp` | 0.39 | [0.01, 0.5] |
-| `ESO_Wo` | 0.08 | [0.01, 0.1] |
-| `gain` | 0.02 | [0.005, 0.05] |
-| `Err_td` | 0.06 | [0.01, 0.1] |
-
-![参数敏感度](figures/heat_kw.png)
-
 ---
 
 ## 基准测试结果
@@ -185,63 +172,6 @@ ADRC-OF 在 CEC2017 和 CEC2022 基准测试集上均具有竞争力的计算效
 </p>
 
 *平均运行时间（D=10, N=50, T=1000），误差棒表示不同测试函数间运行时间的标准差。*
-
-### 收敛行为（CEC2017）
-
-<p align="center">
-  <img src="figures/CEC2017_F1_convergence.png" width="48%"/>
-  <img src="figures/CEC2017_F7_convergence.png" width="48%"/>
-  <img src="figures/CEC2017_F20_convergence.png" width="48%"/>
-  <img src="figures/CEC2017_F29_convergence.png" width="48%"/>
-</p>
-
-### 收敛行为（CEC2022）
-
-<p align="center">
-  <img src="figures/CEC2022_F1_convergence.png" width="48%"/>
-  <img src="figures/CEC2022_F5_convergence.png" width="48%"/>
-  <img src="figures/CEC2022_F8_convergence.png" width="48%"/>
-  <img src="figures/CEC2022_F12_convergence.png" width="48%"/>
-</p>
-
-### 箱线图分析（CEC2022）
-
-<p align="center">
-  <img src="figures/BOX-CEC2022_F1.png" width="32%"/>
-  <img src="figures/BOX-CEC2022_F5.png" width="32%"/>
-  <img src="figures/BOX-CEC2022_F12.png" width="32%"/>
-</p>
-
----
-
-## 工程应用案例
-
-ADRC-OF 已成功应用于 **7 个约束工程优化问题**：
-
-| 问题 | 类型 | 约束特征 |
-|------|------|----------|
-| 船舶操纵 (MMG) 模型参数辨识 | 实际参数估计 | 非线性常微分方程耦合，测量噪声 |
-| 过程综合 (PS) | 化工 | 质量/能量平衡 |
-| 反应器网络设计 (RND) | 化工 | 反应动力学 |
-| Haverly 池化问题 (HP) | 运筹学 | 双线性约束 |
-| 汽车侧面碰撞设计 (CSID) | 机械设计 | 安全法规约束 |
-| 锯木厂调度 (SO) | 工业调度 | 资源可用性 |
-| 七电平逆变器 SOPWM | 电力电子 | 谐波消除 |
-
-<p align="center">
-  <img src="figures/CSID.png" width="30%"/>
-  <img src="figures/SOPWM.png" width="30%"/>
-  <img src="figures/SO.png" width="30%"/>
-</p>
-
-### 船舶操纵参数辨识
-
-利用 Dolphin 1 号船模自由航行试验数据，辨识船舶操纵运动数学模型（MMG 模型）的水动力参数：
-
-<p align="center">
-  <img src="figures/Haitun.jpg" width="45%"/>
-  <img src="figures/Haitun2.png" width="45%"/>
-</p>
 
 ---
 
