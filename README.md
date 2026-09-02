@@ -56,7 +56,6 @@ The ADRC-OF algorithm consists of four main stages in each iteration:
 1. LTD: Smooth trajectory generation toward the current best solution
 2. LESO: Estimate system state (z1) and total disturbance (z2) for each individual
 3. LSEF: Compute control input via feedback + disturbance compensation
-4. Lévy Flight: Diversity-preserving exploration blended with control-driven search
 ```
 
 ### Pseudocode
@@ -73,10 +72,9 @@ For t = 1 to T:
              z1 ← z1 + (z2 + b×u - 2×Wo×e_y)
              z2 ← z2 - Wo²×e_y
     4. LSEF: u ← (kp×rand×(x1-z1) - z2×rand) / b × rand
-    5. Lévy: out ← levy(N,D,β) × (x1 - TargetX) × decaying_factor
-    6. Hybrid update: X ← X + a_t×u + (1-a_t)×out
-    7. Boundary handling: X ← clamp(X, lb, ub)
-    8. Evaluate new population
+    5. Hybrid update: X ← X + a_t×u + (1-a_t)×out
+    6. Boundary handling: X ← clamp(X, lb, ub)
+    7. Evaluate new population
 End
 ```
 
@@ -142,13 +140,13 @@ demo
 
 ### Optional Parameters (Name-Value Pairs)
 
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `SEF_kp` | 0.165 | State error feedback gain. Higher values increase exploitation intensity. |
-| `ESO_Wo` | 0.0775 | Observer bandwidth. Controls how quickly the ESO responds to changes. Larger values give faster tracking but more noise sensitivity. |
-| `gain` | 0.012 | Estimated control gain `b`. Affects the compensation strength. |
-| `Err_td` | 0.05 | Tracking differentiator gain `r`. Controls the smoothness of the reference trajectory. |
-| `Verbose` | false | Print progress every 10% of iterations. |
+| Parameter |  Description |
+|-----------|-------------|
+| `SEF_kp` |  State error feedback gain. Higher values increase exploitation intensity. |
+| `ESO_Wo` |  Observer bandwidth. Controls how quickly the ESO responds to changes. Larger values give faster tracking but more noise sensitivity. |
+| `gain` |  Estimated control gain `b`. Affects the compensation strength. |
+| `Err_td` |  Tracking differentiator gain `r`. Controls the smoothness of the reference trajectory. |
+| `Verbose` |  Print progress every 10% of iterations. |
 
 ### Output
 
@@ -177,18 +175,7 @@ ADRC-OF achieves competitive runtime efficiency on both CEC2017 and CEC2022 benc
 
 ## Citation
 
-If you use ADRC-OF in your research, please cite our paper:
 
-```bibtex
-@article{xiang2025adrcof,
-  title     = {A Closed-Loop Active Disturbance Rejection Control-Based
-               Optimization Framework for Constrained Engineering Optimization},
-  author    = {Jing Xiang and Yingkai Ma and Wentao Zhou and Yuxuan Chen and
-               Hua Guo and Guihua Xia},
-  journal   = {Applied Soft Computing},
-  year      = {2025},
-  url       = {https://github.com/Xjing140/ADRC-OF}
-}
 ```
 
 ---
@@ -201,7 +188,7 @@ This project is licensed under the Apache License 2.0 — see the [LICENSE](LICE
 
 ## Contact
 
-- **Jing Xiang** — xiangjing@hrbeu.edu.cn
+- **Jing X** — xiangjing@hrbeu.edu.cn
 - **Guihua Xia** (Corresponding Author) — xiaguihua@hrbeu.edu.cn
 
 College of Intelligent Systems Science and Engineering, Harbin Engineering University, Harbin 150001, China
