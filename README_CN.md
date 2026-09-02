@@ -56,7 +56,6 @@ ADRC-OF 每次迭代包含四个主要阶段：
 1. LTD：生成向当前最优解靠近的平滑过渡轨迹
 2. LESO：对每个个体估计系统状态 (z1) 和总扰动 (z2)
 3. LSEF：通过反馈 + 扰动补偿计算控制量
-4. Lévy 飞行：保留多样性的探索，与基于控制的搜索混合更新
 ```
 
 ### 伪代码
@@ -73,10 +72,9 @@ For t = 1 to T:
              z1 ← z1 + (z2 + b×u - 2×Wo×e_y)
              z2 ← z2 - Wo²×e_y
     4. LSEF: u ← (kp×rand×(x1-z1) - z2×rand) / b × rand
-    5. Lévy: out ← levy(N,D,β) × (x1 - TargetX) × 衰减因子
-    6. 混合更新: X ← X + a_t×u + (1-a_t)×out
-    7. 边界处理: X ← clamp(X, lb, ub)
-    8. 评估新种群
+    5. 混合更新: X ← X + a_t×u + (1-a_t)×out
+    6. 边界处理: X ← clamp(X, lb, ub)
+    7. 评估新种群
 End
 ```
 
@@ -142,13 +140,13 @@ demo
 
 ### 可选参数（名称-值对）
 
-| 参数 | 默认值 | 说明 |
-|------|--------|------|
-| `SEF_kp` | 0.165 | 状态误差反馈增益。增大则加强开发（局部搜索）强度。 |
-| `ESO_Wo` | 0.0775 | 观测器带宽。控制 ESO 的响应速度，值越大跟踪越快但对噪声越敏感。 |
-| `gain` | 0.012 | 估计控制增益 `b`。影响补偿强度。 |
-| `Err_td` | 0.05 | 跟踪微分器增益 `r`。控制参考轨迹的平滑程度。 |
-| `Verbose` | false | 是否每完成 10% 的迭代打印进度。 |
+| 参数 | 说明 |
+|------|------|
+| `SEF_kp` | 状态误差反馈增益。增大则加强开发（局部搜索）强度。 |
+| `ESO_Wo` | 观测器带宽。控制 ESO 的响应速度，值越大跟踪越快但对噪声越敏感。 |
+| `gain` | 估计控制增益 `b`。影响补偿强度。 |
+| `Err_td` |跟踪微分器增益 `r`。控制参考轨迹的平滑程度。 |
+| `Verbose` | 是否每完成 10% 的迭代打印进度。 |
 
 ### 输出
 
@@ -175,20 +173,6 @@ ADRC-OF 在 CEC2017 和 CEC2022 基准测试集上均具有竞争力的计算效
 
 ---
 
-## 引用
-
-如果您在研究中使用了 ADRC-OF，请引用以下论文：
-
-```bibtex
-@article{xiang2025adrcof,
-  title     = {A Closed-Loop Active Disturbance Rejection Control-Based
-               Optimization Framework for Constrained Engineering Optimization},
-  author    = {Jing Xiang and Yingkai Ma and Wentao Zhou and Yuxuan Chen and
-               Hua Guo and Guihua Xia},
-  journal   = {Applied Soft Computing},
-  year      = {2025},
-  url       = {https://github.com/Xjing140/ADRC-OF}
-}
 ```
 
 ---
@@ -204,4 +188,4 @@ ADRC-OF 在 CEC2017 和 CEC2022 基准测试集上均具有竞争力的计算效
 - **向晶** — xiangjing@hrbeu.edu.cn
 - **夏桂华**（通讯作者）— xiaguihua@hrbeu.edu.cn
 
-哈尔滨工程大学智能系统科学与工程学院，哈尔滨 150001
+
