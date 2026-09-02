@@ -1,12 +1,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  ADRC-based optimization framework (ADRC-OF) source codes version 0.1(beta)
+%  ADRC-based optimization framework (ADRC-OF) source codes version 0.2(beta)
 %
 %  Developed in:	MATLAB 9.13 (R2022b)
 %
-%  Programmer:		Jing Xiang
+%  Programmer:		Jing X
 %
-%  Original paper:	Jing Xiang,
+%  Original paper:	Jing X,
 %                   
 %                   algorithm based on active disturbance rejection control
 %                   algorithm
@@ -15,10 +15,10 @@ function [TargetX, TargetF, ConvergenceCurve] = ADRCOF(fun, nvars, lb, ub, N, T,
 p = inputParser;
 addParameter(p, 'Verbose', false);
 addParameter(p, 'Verfig',     false);
-addParameter(p, 'SEF_kp',       0.165);    % First-order channel equivalent feedback gain (LADRC linear feedback)
-addParameter(p, 'ESO_Wo',       0.0775);     % Controller bandwidth ωc (the larger the response, the faster the noise/jitter ↑)
-addParameter(p, 'gain',         0.012);      % Estimated control gain
-addParameter(p, 'Err_td',       0.05);      % Gain coefficient of the first-order tracking differentiator (LTD)
+addParameter(p, 'SEF_kp',       0.39);    % First-order channel equivalent feedback gain (LADRC linear feedback)
+addParameter(p, 'ESO_Wo',       0.08);     % Controller bandwidth ωc (the larger the response, the faster the noise/jitter ↑)
+addParameter(p, 'gain',         0.02);      % Estimated control gain
+addParameter(p, 'Err_td',       0.06);      % Gain coefficient of the first-order tracking differentiator (LTD)
 
 parse(p, varargin{:});
 opt = p.Results;
@@ -68,10 +68,8 @@ for t=1:T
     % 3) LADRC control law (linear feedback + disturbance compensation) first-order LSEF
     u    = ( kp.*rand(N,1).*( x1 - z1 ) - z2.*rand(N,1) ) / b.*rand(N,1);
 
-    % ---------- Lévy Flight ----------
-    a = (log(T-t+2)/log(T))^2;
-    out0 = (cos(1-t/T)+ a *rand(N,nvars).*levy_step(N,nvars,1.5)).*e1;
     % ---------- Hybrid update ----------
+    out0 = cos(1-t/T).*e1;
     a_t = rand(N,1)*cos(t/T);
     X = X + a_t.*u + (1-a_t).*out0;
 
@@ -85,12 +83,4 @@ for t=1:T
         fprintf('Iter %d/%d | Best=%.6g\n',t,T,TargetF);
     end
 end
-end
-
-%% Lévy Flight
-function L=levy_step(n,d,beta)
-sigma=( gamma(1+beta)*sin(pi*beta/2) / ...
-   (gamma((1+beta)/2)*beta*2^((beta-1)/2)) )^(1/beta);
-u=randn(n,d)*sigma; v=randn(n,d);
-L=u./(abs(v).^(1/beta));
 end
